@@ -1,5 +1,7 @@
+import Lottie from 'lottie-react';
 import { useState } from 'react';
 import SelectIcon from '../assets/SelectIcon.svg';
+import arrowDownAnim from '../assets/arrow_down_anim.json';
 import { sendDataToGA } from '../utils/events';
 import { Variant } from './types';
 
@@ -25,6 +27,13 @@ export const SelectedButton = ({ showThx, setVariant, variant }: Props) => {
   return (
     <div className="fixed bottom-0 p-4 w-full z-10 bg-white rounded-t-[32px]">
       <div className="relative">
+        {variant === 'none' ? (
+          <Lottie
+            animationData={arrowDownAnim}
+            loop={true}
+            className="absolute w-20 h-20 -top-4 left-[50%] translate-x-[-50%] translate-y-[-50%]"
+          />
+        ) : null}
         <select
           className={`${!variant ? 'opacity-50' : ''} text-black w-full p-4 border-[#F3F4F5] border-2 rounded-2xl mb-4 outline-none pr-[40px] appearance-none`}
           value={variant}
