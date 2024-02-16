@@ -10,7 +10,7 @@ import { BoxesGrid } from './variant-5/BoxesGrid';
 
 export const App = () => {
   const [thxShow, setThx] = useState(false);
-  const [variant, setVariant] = useState<Variant | ''>('');
+  const [variant, setVariant] = useState<Variant | 'none'>('none');
 
   const showThx = useCallback(() => {
     setThx(true);

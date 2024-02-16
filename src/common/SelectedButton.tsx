@@ -6,14 +6,14 @@ import { Variant } from './types';
 type Props = {
   showThx: () => void;
   setVariant: (variant: Variant) => void;
-  variant: Variant | '';
+  variant: Variant | 'none';
 };
 
 export const SelectedButton = ({ showThx, setVariant, variant }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
-    if (variant) {
+    if (variant !== 'none') {
       setLoading(true);
       sendDataToGA(variant).then(() => {
         setLoading(false);
@@ -32,23 +32,22 @@ export const SelectedButton = ({ showThx, setVariant, variant }: Props) => {
           backgroundPositionY: '25px',
         }}
         className={`${!variant ? 'opacity-50' : ''} text-black w-full p-4 border-[#F3F4F5] border-2 rounded-2xl mb-4 outline-none pr-[40px] appearance-none`}
-        onChange={e => setVariant(e.target.value as Variant)}
+        value={variant}
+        onChange={e => {
+          if (e.target.value && e.target.value !== 'none') {
+            setVariant(e.target.value as Variant);
+          } else {
+            e.preventDefault();
+          }
+        }}
       >
-        <option selected disabled>
+        <option value="none" disabled>
           Не выбрано
         </option>
-        <option selected={variant === 'compact'} value="compact">
-          Компактный
-        </option>
-        <option selected={variant === 'detailed'} value="detailed">
-          Подробный
-        </option>
-        <option selected={variant === 'big'} value="big">
-          Большой
-        </option>
-        <option selected={variant === 'grid'} value="grid">
-          Плиточный
-        </option>
+        <option value="compact">Компактный</option>
+        <option value="detailed">Подробный</option>
+        <option value="big">Большой</option>
+        <option value="grid">Плиточный</option>
       </select>
 
       <button
