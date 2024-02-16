@@ -1,33 +1,23 @@
-import CheckIcon from '../assets/CheckIcon.svg';
-
 type Props = {
-  checked: boolean;
   title: string;
   category: string;
   subcategory: string;
   percentage: string;
   img: string;
   logo: string;
-  onClick: () => void;
 };
 
-export const SmallBox = ({ checked, onClick, percentage, img, logo, category, subcategory, title }: Props) => {
+export const SmallBox = ({ percentage, img, logo, category, subcategory, title }: Props) => {
   return (
     <div
-      onClick={onClick}
       style={{
         background: `url(${img}) center center / cover no-repeat`,
       }}
-      className={`h-[228px] rounded-2xl border p-2 row-span-1 ${checked ? 'border-ab-red' : ''} overflow-hidden relative`}
+      className={`h-[228px] rounded-2xl  p-2 row-span-1 overflow-hidden relative`}
     >
       <div className="h-full z-[2] flex flex-col gap-10 justify-between relative">
         <div className="flex justify-between">
           <img src={logo} className="w-12 h-12 rounded-2xl" />
-          {checked ? (
-            <img className="w-6 h-6" src={CheckIcon} />
-          ) : (
-            <div className="w-6 h-6 border-2 border-ab-light-grey rounded-full bg-white" />
-          )}
         </div>
 
         <div className="flex flex-col">

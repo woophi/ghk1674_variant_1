@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import SelectIcon from '../assets/SelectIcon.svg';
+import { sendDataToGA } from '../utils/events';
 import { Variant } from './types';
 
 type Props = {
@@ -12,12 +13,13 @@ export const SelectedButton = ({ showThx, setVariant, variant }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const handleClick = () => {
-    setLoading(true);
-    showThx();
-    // sendDataToGA(selectedItems).then(() => {
-    //   setLoading(false);
-    //   showThx();
-    // });
+    if (variant) {
+      setLoading(true);
+      sendDataToGA(variant).then(() => {
+        setLoading(false);
+        showThx();
+      });
+    }
   };
 
   return (

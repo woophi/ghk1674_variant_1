@@ -1,12 +1,12 @@
 import { useCallback, useMemo, useState } from 'react';
-import { ThxLayout } from './common/ThxLayout';
-import { Boxes } from './variant-1/Boxes';
-import { Variant } from './common/types';
+import { BoxesEmpty } from './common/BoxesEmpty';
 import { SelectedButton } from './common/SelectedButton';
+import { ThxLayout } from './common/ThxLayout';
+import { Variant } from './common/types';
+import { Boxes } from './variant-1/Boxes';
 import { BoxesOfSwiper } from './variant-2-3/BoxesOfSwiper';
 import { BoxesOfTV } from './variant-4/BoxesOfTV';
 import { BoxesGrid } from './variant-5/BoxesGrid';
-import { BoxesEmpty } from './common/BoxesEmpty';
 
 export const App = () => {
   const [thxShow, setThx] = useState(false);
@@ -21,7 +21,7 @@ export const App = () => {
       case 'compact':
         return <Boxes />;
       case 'detailed':
-        return <BoxesOfSwiper withPromo={false} />;
+        return <BoxesOfSwiper />;
       case 'big':
         return <BoxesOfTV />;
       case 'grid':
